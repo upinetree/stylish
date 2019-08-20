@@ -1,4 +1,4 @@
-require 'lib/stylish'
+require_relative 'lib/stylish'
 
 begin
   require 'jeweler'
