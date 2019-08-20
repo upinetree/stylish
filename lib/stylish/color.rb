@@ -383,19 +383,19 @@ module Stylish #:nodoc:
     private
     
     def hsl
-      red, green, blue = rgb = [@red, @green, @blue].map {|i| i / 255 }
+      red, green, blue = rgb = [@red, @green, @blue].map {|i| i / 255r }
       max, min               = rgb.max, rgb.min
       
-      huer = Proc.new {|num, a| 60 * (num / (max - min)) + a }
+      huer = Proc.new {|num, a| 60 * (num.to_r / (max - min)) + a }
       
-      lightness = (max + min) / 2
+      lightness = (max + min) / 2r
       
       if max == min
         saturation = 0
-      elsif lightness <= 1 / 2
-        saturation = (max - min) / (lightness * 2)
+      elsif lightness <= 1 / 2r
+        saturation = (max - min).to_r / (lightness * 2)
       else
-        saturation = (max - min) / (2 - (lightness * 2))
+        saturation = (max - min).to_r / (2 - (lightness * 2))
       end
       
       hue = if max == min
@@ -408,7 +408,7 @@ module Stylish #:nodoc:
         huer.call(red - green, 240)
       end
       
-      [hue].concat([saturation, lightness].map {|r|
+      [hue.to_i].concat([saturation, lightness].map {|r|
         (r * 100).to_f.round.to_s + "%"
       })
     end

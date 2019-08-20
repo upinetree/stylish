@@ -1,6 +1,4 @@
 require 'pathname'
-require 'mathn'
-require 'rational'
 
 module Stylish
   VERSION = '0.1.6'
